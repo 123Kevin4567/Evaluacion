@@ -1,67 +1,36 @@
-
-
-class Calculadora {
+export class Calculadora {
     suma(a, b) {
-        let resultado = 0;
-        try {
-            this.validarNumeros(a, b);
-            resultado = a + b;
-            return resultado;
-        } catch (error) {
-            return error.message;
+        if (!this.validarNumeros(a, b)) {
+            return "Error: Debes ingresar valores numéricos válidos";
         }
+        return a + b;
     }
 
     resta(a, b) {
-        let resultado = 0;
-        try {
-            this.validarNumeros(a, b);
-            resultado = a - b;
-            return resultado;
-        } catch (error) {
-            return error.message;
+        if (!this.validarNumeros(a, b)) {
+            return "Error: Debes ingresar valores numéricos válidos";
         }
+        return a - b;
     }
 
     multiplicacion(a, b) {
-        let resultado = 0;
-        try {
-            this.validarNumeros(a, b);
-            resultado = a * b;
-            return resultado;
-        } catch (error) {
-            return error.message;
+        if (!this.validarNumeros(a, b)) {
+            return "Error: Debes ingresar valores numéricos válidos";
         }
+        return a * b;
     }
 
     division(a, b) {
-        let resultado = 0;
-        try {
-            this.validarNumeros(a, b);
-            if (b === 0) {
-                throw new Error("Error: No es posible dividir por cero");
-            }
-            resultado = a / b;
-            return resultado;
-        } catch (error) {
-            return error.message;
+        if (!this.validarNumeros(a, b)) {
+            return "Error: Debes ingresar valores numéricos válidos";
         }
+        if (b === 0) {
+            return "Error: No es posible dividir por cero";
+        }
+        return a / b;
     }
 
     validarNumeros(a, b) {
-        if (typeof a !== 'number' || typeof b !== 'number') {
-            throw new Error("Error: Los valores deben ser números");
-        }
-        if (isNaN(a) || isNaN(b)) {
-            throw new Error("Error: Los valores no pueden ser NaN");
-        }
-        if (!isFinite(a) || !isFinite(b)) {
-            throw new Error("Error: Los valores deben ser finitos");
-        }
+        return !isNaN(a) && !isNaN(b) && typeof a === 'number' && typeof b === 'number';
     }
 }
-
-
-
-
-
